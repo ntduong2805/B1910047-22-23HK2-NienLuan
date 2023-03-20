@@ -1,4 +1,4 @@
-# Laravel 8 - Booking Application
+<!-- # Laravel 8 - Booking Application
 
 ## Screenshots
 
@@ -35,4 +35,4 @@ Go to the project directory
 #### Login
 
 -   email = admin@example.com
--   password = 123
+-   password = 123 -->
