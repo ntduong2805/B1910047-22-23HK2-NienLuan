@@ -18,7 +18,7 @@ trait HandleImageTrait
             $image = $request->file('image');
 
             $name = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save($this->path . $name);
+            Image::make($image)->resize(800, 571)->save($this->path . $name);
             return $name;
         }
     }

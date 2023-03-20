@@ -34,7 +34,7 @@
                                 <th>No</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Description</th>
+                                
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,7 +47,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td><img src="{{ $category->images->count() > 0 ? asset('uploads/categories/' . $category->images->first()->url) : '' }}" width="150px" height="150px" alt=""></td>
                                 <td>{{ $category->name }}</td>
-                                <td>{!! $category->description !!}</td>
+                                
                                 <td>
                                     <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info">
                                         <i class="fa fa-pencil-alt"></i>

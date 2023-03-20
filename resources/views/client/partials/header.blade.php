@@ -18,8 +18,8 @@
                 <div class="row full-height align-items-center">
                   <div class="col-md-6 mx-auto">
                     <ul class="list-unstyled menu">
-                      <li class="active"><a href="index.html">Home</a></li>
-                      <li><a href="rooms.html">Rooms</a></li>
+                      <li class="active"><a href="{{ route('home') }}">Home</a></li>
+                      <li><a href="{{ route('client.rooms.index') }}">Rooms</a></li>
                       <li><a href="about.html">About</a></li>
                       <li><a href="events.html">Events</a></li>
                       <li><a href="contact.html">Contact</a></li>

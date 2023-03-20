@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [ClientController::class, 'index'])->name('home');
 
 Route::get('/admin', function () {
     return view('auth.login');
@@ -72,6 +71,9 @@ Route::group(['middleware' => ['isAdmin','auth'],'prefix' => 'admin', 'as' => 'a
     //Calender
     Route::get('/system_calendars', [SystemCalendarController::class, 'index'])->name('system_calendars.index');
 });
+
+Route::get('/', [ClientController::class, 'index'])->name('home');
+Route::get('/rooms', [ClientController::class, 'showRoom'])->name('client.rooms.index');
 
 Auth::routes();
 

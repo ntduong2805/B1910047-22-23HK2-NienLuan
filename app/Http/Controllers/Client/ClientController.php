@@ -16,6 +16,11 @@ class ClientController extends Controller
     public function index()
     {
         $categories = $this->category->all();
-        return view('client.app', compact('categories'));
+        return view('client.home', compact('categories'));
+    }
+    public function showRoom()
+    {
+        $categories = $this->category->all();
+        return view('client.rooms.index', compact('categories'));
     }
 }
