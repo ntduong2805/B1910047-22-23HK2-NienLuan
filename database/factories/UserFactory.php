@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 class UserFactory extends Factory
 {
@@ -22,11 +23,24 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $gender = $this->faker->randomElement(['male', 'female', 'others']);
+        
+        if($gender == "female")
+            $avatar = $this->faker->randomElement(['girl.png', 'girl-1.png', 'girl-2.png']);
+        else
+            $avatar = $this->faker->randomElement(['boy.png', 'boy-1.png', 'man.png', 'man-1.png', 'man-2.png', 'man-3.png']);
         return [
-            'name' => $this->faker->name,
+            'first_name' => $this->faker->firstName,
+            'last_name' => $this->faker->lastName,
+            'gender' => $gender,
+            'phone' => $this->faker->isbn10(),
+            'address' => $this->faker->address,
             'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('password'),
+            'avatar' => $avatar,
+            'about' => $this->faker->text($maxNbChars = 200),
+            'role' => 'user',
+            'status' => TRUE,
             'remember_token' => Str::random(10),
         ];
     }
