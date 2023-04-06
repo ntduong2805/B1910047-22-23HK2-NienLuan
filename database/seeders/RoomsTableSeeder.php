@@ -14,6 +14,6 @@ class RoomsTableSeeder extends Seeder
      */
     public function run()
     {
-        Room::factory(Room::class, 30)->create();
+        Room::factory(30)->create();
     }
 }

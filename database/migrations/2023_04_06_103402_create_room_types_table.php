@@ -23,7 +23,7 @@ class CreateRoomTypesTable extends Migration
             $table->integer('max_child')->nullable()->default(0);
             $table->text('description')->nullable();
             $table->boolean('room_service')->default(true);
-            $table->boolean('sattus')->default(true);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

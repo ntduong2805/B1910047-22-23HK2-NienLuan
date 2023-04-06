@@ -15,7 +15,7 @@ class SlidersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('slider')->insert([
+        DB::table('sliders')->insert([
             'name' => "1.jpg",
             'small_title' => "One Experience the hotel",
             'big_title' => "One Royal Gardens",
@@ -25,7 +25,7 @@ class SlidersTableSeeder extends Seeder
             'status' => true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('slider')->insert([
+        DB::table('sliders')->insert([
             'name' => "2.jpg",
             'small_title' => "Two Experience the hotel",
             'big_title' => "Two Royal Gardens",
@@ -35,7 +35,7 @@ class SlidersTableSeeder extends Seeder
             'status' => true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('slider')->insert([
+        DB::table('sliders')->insert([
             'name' => "3.jpg",
             'small_title' => "Three Experience the hotel",
             'big_title' => "Three Royal Gardens",
@@ -45,7 +45,7 @@ class SlidersTableSeeder extends Seeder
             'status' => true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('slider')->insert([
+        DB::table('sliders')->insert([
             'name' => "4.jpg",
             'small_title' => "Four Experience the hotel",
             'big_title' => "Four Royal Gardens",
