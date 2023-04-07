@@ -14,6 +14,10 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'phone_number' => env('PHONE_NUMBER', '+84 0913854605'),
+    'email' => env('EMAIL', 'ntduong2805@gmail.com'),
+    'video' => env('VIDEO', 'https://www.youtube.com/embed/VHjMJeLsI0o'),
+    'currency' => env('CURRENCY', 'VNĐ'),
     'vat_percantage' => env('VAT_PERCENTAGE', '8'),
     'service_charge_percentage' => env('SERVICE_CHARGE_PERCENTAGE', '10'),
 
@@ -163,7 +167,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
         Intervention\Image\ImageServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -228,7 +235,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
         'Image' => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];
