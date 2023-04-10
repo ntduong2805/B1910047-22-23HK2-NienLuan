@@ -11,7 +11,7 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="{{url('/admin')}}">
+            <a class="navbar-brand" href="{{route('admin')}}">
                 Home
             </a>
         </div>
@@ -35,7 +35,7 @@
                         </p>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('admin/user/'.Auth::user()->id.'/profile') }}">Edit Profile</a></li>
+                        <li><a href="{{  route('admin.user.edit', Auth::user()->id) }}">Edit Profile</a></li>
                         <li><a href="{{ url('/') }}">Visit App</a></li>
                         <li>
                             <a href="{{ route('logout') }}"
@@ -43,7 +43,7 @@
                                                      document.getElementById('logout-form').submit();">Logout
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
+                                @csrf
                             </form>
                         </li>
                     </ul>

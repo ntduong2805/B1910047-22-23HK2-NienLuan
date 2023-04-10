@@ -81,7 +81,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Avatar</label>
-                                        <input type="file" name="avatar" class="form-control border-input">
+                                        <input type="file" name="avatar" accept="image/*" class="form-control border-input">
                                     </div>
                                 </div>
                             </div>

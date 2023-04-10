@@ -5,12 +5,12 @@
             Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
         -->
         <div class="logo">
-            <a href="{{URL::to('/')}}" class="simple-text">
+            <a href="{{ route('admin') }}" class="simple-text">
                 {{ config('app.name', 'Laravel') }}
             </a>
         </div>
         <div class="logo logo-mini">
-            <a href="{{URL::to('/admin')}}" class="simple-text">
+            <a href="{{ route('admin') }}" class="simple-text">
                 JP
             </a>
         </div>

@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="content">
                             <div class="toolbar">
-                                <a href="{{ route('admin.user.create') }}" rel="tooltip" title="Add New User"
+                                <a href="{{ route('admin.slider.create')}}" rel="tooltip" title="Add New Image"
                                    class="btn btn-danger" style="margin-right: 20px">
                                     <i class="ti-plus"></i>
                                 </a>
@@ -19,32 +19,26 @@
                             <table id="bootstrap-table" class="table">
                                 <thead>
                                 <th data-field="sn" class="text-center">#</th>
-                                <th data-field="id" class="text-center">User ID</th>
-                                <th data-field="name" data-sortable="true">Name</th>
-                                <th data-field="phone" data-sortable="true">Phone</th>
-                                <th data-field="email" data-sortable="true">Email</th>
-                                <th data-field="address" data-sortable="true">Address</th>
-                                <th data-field="roles" data-sortable="true">Role</th>
+                                <th data-field="id" class="text-center">Slider</th>
+                                <th data-field="small_title" data-sortable="true">Small Title</th>
+                                <th data-field="big_title" data-sortable="true">Big Title</th>
                                 <th data-field="status" data-sortable="true">Status</th>
                                 <th data-field="actions" class="td-actions text-right">Actions
                                 </th>
                                 </thead>
                                 <tbody>
-                                @unless($users->count())
+                                @unless($sliders->count())
                                     @else
-                                        @foreach($users as $index => $user)
+                                        @foreach($sliders as $index => $slider)
                                             <tr>
                                                 <td>{{$index+1}}</td>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{{ $user->first_name." ".$user->last_name }}</td>
-                                                <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->address }}</td>
+                                                <td><img height="60px" width="60px" rel="tooltip"  alt="{{ $slider->caption }}" title="{{ $slider->caption }}"
+                                                         src="{{'/storage/sliders/'.$slider->name}}"/></td>
+                                                <td>{{ $slider->small_title }}</td>
+
+                                                <td>{{ $slider->big_title }}</td>
                                                 <td>
-                                                        <button class="btn btn-default btn-xs btn-fill">{{ $user->role }}</button>
-                                                </td>
-                                                <td>
-                                                    @if($user->status == 1)
+                                                    @if($slider->status == 1)
                                                         <button class="btn btn-success btn-xs btn-fill">Active</button>
                                                     @else
                                                         <button class="btn btn-default btn-xs btn-fill">Inactive
@@ -53,9 +47,10 @@
                                                 </td>
                                                 <td>
                                                     <div class="table-icons">
+
                                                         <a rel="tooltip" title="Edit"
                                                            class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                           href="{{ route('admin.user.edit', $user->id) }}">
+                                                           href="{{ route('admin.slider.edit', $slider->id) }}">
                                                             <i class="ti-pencil-alt"></i>
                                                         </a>
                                                         <button rel="tooltip" title="Remove"
@@ -65,14 +60,13 @@
                                                         </button>
                                                         <div class="collapse">
                                                             
-                                                            <form action="{{ route('admin.user.destroy', $user->id) }}" id="delete-user" method="post">
+                                                            <form action="{{ route('admin.slider.destroy', $slider->id) }}" id="delete-slider" method="post">
                                                                 @method('delete')
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                                             </form>
-                                                            
-                                                            
                                                         </div>
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -99,7 +93,7 @@
 
         var delete_button = function(){
             swal({  title: "Are you sure?",
-                text: "After you delete the user, all user room and events bookings will also be deleted.",
+                text: "After you delete the slider image.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn btn-info btn-fill",
@@ -107,9 +101,11 @@
                 cancelButtonClass: "btn btn-danger btn-fill",
                 closeOnConfirm: false,
             },function(){
-                $('form#delete-user').submit();
+                $('form#delete-slider').submit();
             });
         }
+
+
 
         var $table = $('#bootstrap-table');
         $().ready(function () {

@@ -10,41 +10,27 @@
                     <div class="card">
                         <div class="content">
                             <div class="toolbar">
-                                <a href="{{ route('admin.user.create') }}" rel="tooltip" title="Add New User"
-                                   class="btn btn-danger" style="margin-right: 20px">
-                                    <i class="ti-plus"></i>
-                                </a>
                                 <!--Here you can write extra buttons/actions for the toolbar-->
                             </div>
                             <table id="bootstrap-table" class="table">
                                 <thead>
                                 <th data-field="sn" class="text-center">#</th>
-                                <th data-field="id" class="text-center">User ID</th>
-                                <th data-field="name" data-sortable="true">Name</th>
-                                <th data-field="phone" data-sortable="true">Phone</th>
-                                <th data-field="email" data-sortable="true">Email</th>
-                                <th data-field="address" data-sortable="true">Address</th>
-                                <th data-field="roles" data-sortable="true">Role</th>
+                                <th data-field="name" class="text-center">Name</th>
+                                <th data-field="icon">Icon</th>
                                 <th data-field="status" data-sortable="true">Status</th>
                                 <th data-field="actions" class="td-actions text-right">Actions
                                 </th>
                                 </thead>
                                 <tbody>
-                                @unless($users->count())
+                                @unless($facilities->count())
                                     @else
-                                        @foreach($users as $index => $user)
+                                        @foreach($facilities as $index => $facility)
                                             <tr>
                                                 <td>{{$index+1}}</td>
-                                                <td>{{ $user->id }}</td>
-                                                <td>{{ $user->first_name." ".$user->last_name }}</td>
-                                                <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->address }}</td>
+                                                <td>{{ $facility->name }}</td>
+                                                <td><img src="{{'/storage/facilities/'.$facility->icon}}" alt=""></td>
                                                 <td>
-                                                        <button class="btn btn-default btn-xs btn-fill">{{ $user->role }}</button>
-                                                </td>
-                                                <td>
-                                                    @if($user->status == 1)
+                                                    @if($facility->status == 1)
                                                         <button class="btn btn-success btn-xs btn-fill">Active</button>
                                                     @else
                                                         <button class="btn btn-default btn-xs btn-fill">Inactive
@@ -55,24 +41,9 @@
                                                     <div class="table-icons">
                                                         <a rel="tooltip" title="Edit"
                                                            class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                           href="{{ route('admin.user.edit', $user->id) }}">
+                                                           href="{{ route('admin.facility.edit', $facility->id) }}">
                                                             <i class="ti-pencil-alt"></i>
                                                         </a>
-                                                        <button rel="tooltip" title="Remove"
-                                                                class="btn btn-simple btn-danger btn-icon table-action"
-                                                                onclick="delete_button()">
-                                                            <i class="ti-close"></i>
-                                                        </button>
-                                                        <div class="collapse">
-                                                            
-                                                            <form action="{{ route('admin.user.destroy', $user->id) }}" id="delete-user" method="post">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-danger btn-ok">Delete</button>
-                                                            </form>
-                                                            
-                                                            
-                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -99,7 +70,7 @@
 
         var delete_button = function(){
             swal({  title: "Are you sure?",
-                text: "After you delete the user, all user room and events bookings will also be deleted.",
+                text: "You want to delete the facility.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn btn-info btn-fill",
@@ -107,9 +78,10 @@
                 cancelButtonClass: "btn btn-danger btn-fill",
                 closeOnConfirm: false,
             },function(){
-                $('form#delete-user').submit();
+                $('form#delete-facility').submit();
             });
         }
+
 
         var $table = $('#bootstrap-table');
         $().ready(function () {
