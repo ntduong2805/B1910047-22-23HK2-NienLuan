@@ -15,7 +15,7 @@ class AdminController extends BaseController
     use AuthorizesRequests, Dispatchable, ValidatesRequests;
     public function __construct()
     {
-        
+        $this->middleware('auth');
         $admin_nav = config('nav.admin');
         View::share('admin_nav', $admin_nav);
     }

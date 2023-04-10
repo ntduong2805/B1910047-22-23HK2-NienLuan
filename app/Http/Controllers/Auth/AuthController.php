@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Model\User;
+use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {

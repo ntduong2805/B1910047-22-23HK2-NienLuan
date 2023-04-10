@@ -17,20 +17,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'first_name' => "Nguyen",
-            'last_name' => "Thai Duong",
-            'gender' => "male",
-            'phone' => "0913854605",
-            'address' => "Can Tho, Viet Nam",
-            'email' => "ntduong2805@gmail.com",
-            'password' => bcrypt('password'),
-            'avatar' => 'boy-1.png',
-            'about' => "hello from the other world",
-            'status' => TRUE,
-            'remember_token' => Str::random(10),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('users')->insert([
             'first_name' => "admin",
             'last_name' => "admin",
             'gender' => "male",
@@ -45,5 +31,20 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+        DB::table('users')->insert([
+            'first_name' => "Nguyen",
+            'last_name' => "Thai Duong",
+            'gender' => "male",
+            'phone' => "0913854605",
+            'address' => "Can Tho, Viet Nam",
+            'email' => "ntduong2805@gmail.com",
+            'password' => bcrypt('password'),
+            'avatar' => 'boy-1.png',
+            'about' => "hello from the other world",
+            'status' => TRUE,
+            'remember_token' => Str::random(10),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+        
     }
 }

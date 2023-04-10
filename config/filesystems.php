@@ -54,7 +54,26 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'avatars' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/avatars'),
+            'url' => env('APP_URL').'/storage/avatars',
+            'visibility' => 'public',
+        ],
 
+        'sliders' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/sliders'),
+            'url' => env('APP_URL').'/storage/sliders',
+            'visibility' => 'public',
+        ],
+
+        'room_types' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/room_types'),
+            'url' => env('APP_URL').'/storage/room_types',
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
