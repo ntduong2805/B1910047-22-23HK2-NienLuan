@@ -15,7 +15,7 @@ class Image extends Model
         'is_primary',
         'room_type_id',
     ];
-    public function room_type()
+    public function roomtype()
     {
         return $this->belongsTo(RoomType::class);
     }

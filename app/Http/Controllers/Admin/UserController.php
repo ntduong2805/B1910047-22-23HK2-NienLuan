@@ -25,7 +25,7 @@ class UserController extends AdminController
     public function index()
     {
         $users = User::all();
-        return view('admin.user.view')->with('users', $users);
+        return view('admin.user.index')->with('users', $users);
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends AdminController
             $user->save();
             Session::flash('flash_title', "Success");
             Session::flash('flash_message', "User has been added. You can add more user from the form below.");
-            return redirect('/admin/user');
+            return redirect()->route('admin.user.index');
         }
     }
 
@@ -185,7 +185,7 @@ class UserController extends AdminController
             $user->save();
             Session::flash('flash_title', "Success");
             Session::flash('flash_message', "User profile has been updated.");
-            return redirect('/admin/user');
+            return redirect()->route('admin.user.index');
         }
     }
     
@@ -221,7 +221,7 @@ class UserController extends AdminController
                         Session::flash('flash_title', 'Success');
                         Session::flash('flash_message', 'The user, ' . $user_name . ' has been deleted');
     
-                        return redirect('/admin/user');
+                        return redirect()->route('admin.user.index');
                     } else {
                         $error_message = "Sorry, user could not be deleted.";
                     }

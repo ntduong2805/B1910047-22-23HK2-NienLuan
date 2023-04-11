@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RoomType extends Model
 {
     use HasFactory;
-    protected $table = 'room_types';
+    protected $table = 'roomtypes';
     protected $fillable = [
         'name',
         'cost_per_day',
@@ -31,7 +31,7 @@ class RoomType extends Model
     }
     public function facilities()
     {
-        return $this->belongsToMany(Facility::class, 'facility_room_type')->withTimestamps();
+        return $this->belongsToMany(Facility::class, 'facility_roomtype')->withTimestamps();
     }
     public function getDiscountedPriceAttribute()
     {

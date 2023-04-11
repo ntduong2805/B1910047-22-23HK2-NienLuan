@@ -13,7 +13,7 @@ class CreateFacilityRoomTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('facility_room_type', function (Blueprint $table) {
+        Schema::create('facility_roomtype', function (Blueprint $table) {
             $table->integer('facility_id')->unsigned()->index();
             $table->integer('room_type_id')->unsigned()->index();
             $table->timestamps();
@@ -21,7 +21,7 @@ class CreateFacilityRoomTypeTable extends Migration
             //QUAN HE
 
             $table->foreign('facility_id')->references('id')->on('facilities')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('room_type_id')->references('id')->on('room_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('room_type_id')->references('id')->on('roomtypes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateFacilityRoomTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facility_room_type');
+        Schema::dropIfExists('facility_roomtype');
     }
 }

@@ -22,10 +22,10 @@ return [
             'icon' => 'ti-control-forward'
         ],
 
-        'room_type' => [
+        'roomtype' => [
             'name' => 'Room Type',
             'actions' => [
-                'view' => 'admin/room_type',
+                'view' => 'admin/roomtype',
             ],
             'icon' => 'ti-home'
         ],

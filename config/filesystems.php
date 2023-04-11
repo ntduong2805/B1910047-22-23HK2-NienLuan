@@ -68,10 +68,10 @@ return [
             'visibility' => 'public',
         ],
 
-        'room_types' => [
+        'roomtypes' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/room_types'),
-            'url' => env('APP_URL').'/storage/room_types',
+            'root' => storage_path('app/public/roomtypes'),
+            'url' => env('APP_URL').'/storage/roomtypes',
             'visibility' => 'public',
         ],
         's3' => [

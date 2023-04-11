@@ -24,7 +24,7 @@ class SliderController extends AdminController
     public function index()
     {
         $sliders = Slider::all();
-        return view('admin.slider.view')->with('sliders', $sliders);
+        return view('admin.slider.index')->with('sliders', $sliders);
     }
 
     /**
@@ -86,7 +86,7 @@ class SliderController extends AdminController
 
             Session::flash('flash_title', "Success");
             Session::flash('flash_message', "Image has been added to the slider. You can add more images from the form below.");
-            return redirect('/admin/slider');
+            return redirect()->route('admin.slider.index');
         }
     }
 
@@ -163,7 +163,7 @@ class SliderController extends AdminController
         $slider->save();
         Session::flash('flash_title', 'Success');
         Session::flash('flash_message', 'Image has been updated');
-        return redirect('admin/slider');
+        return redirect()->route('admin.slider.index');
 
     }
 
@@ -180,7 +180,7 @@ class SliderController extends AdminController
             Storage::delete('public/sliders/'.$slider->name);
             Session::flash('flash_title', 'Success');
             Session::flash('flash_message', 'Image has been deleted');
-            return redirect('admin/slider');
+            return redirect()->route('admin.slider.index');
         }
         return redirect()
             ->back()

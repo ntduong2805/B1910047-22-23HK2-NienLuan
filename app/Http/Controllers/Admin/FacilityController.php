@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -22,7 +21,7 @@ class FacilityController extends AdminController
     public function index()
     {
         $facilities = Facility::all();
-        return view('admin.facility.view')->with('facilities', $facilities);
+        return view('admin.facility.index')->with('facilities', $facilities);
     }
 
     /**
@@ -97,7 +96,7 @@ class FacilityController extends AdminController
 
         Session::flash('flash_title', 'Success');
         Session::flash('flash_message', 'The facility has been updated successfully');
-        return redirect('admin/facility');
+        return redirect()->route('admin.facility.index');
     }
 
     /**

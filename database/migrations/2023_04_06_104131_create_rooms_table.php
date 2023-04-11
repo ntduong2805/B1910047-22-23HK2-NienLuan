@@ -22,7 +22,7 @@ class CreateRoomsTable extends Migration
             $table->integer('room_type_id')->unsigned()->index();
             $table->timestamps();
             //QUAN HE
-            $table->foreign('room_type_id')->references('id')->on('room_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('room_type_id')->references('id')->on('roomtypes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
