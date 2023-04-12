@@ -206,9 +206,9 @@ class UserController extends AdminController
                 if ($user->id !== Auth::user()->id) {
     
                     // // Delete room bookings
-                    // foreach ($user->room_bookings as $booking) {
-                    //     $booking->delete();
-                    // }
+                    foreach ($user->room_bookings as $booking) {
+                        $booking->delete();
+                    }
     
     
                     if ($user->delete()) {

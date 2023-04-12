@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@section('title', 'User - Create')
+
 @section('style')
     @parent
 @endsection

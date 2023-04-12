@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\RoomBookingController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\SliderController;
@@ -86,6 +88,17 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
                 Route::put('/{id1}/update/{id2}', 'update')->name('update');
                 Route::delete('/{id1}/destroy/{id2}', 'destroy')->name('destroy');
             });
+    });
+    Route::prefix('roombooking')->middleware('auth')->controller(RoomBookingController::class)->name('.roombooking.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::put('/update/{id}', 'update')->name('update');
+    });
+    Route::prefix('review')->middleware('auth')->controller(ReviewController::class)->name('.review.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/approve/{id}', 'approve')->name('approve');
+        Route::get('/reject/{id}', 'reject')->name('reject');
+
     });
 });
 

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Room Type | Room - Edit')
+@section('title', 'Room Booking - Edit')
 
 @section('style')
     @parent
@@ -11,28 +11,34 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Edit Room Details</h4>
+                            <h4 class="title">Update Booking Status</h4>
                         </div>
                         <div class="content">
-                            
-                            <form action="{{ route('admin.roomtype.room.update', ['id1' => $roomtype->id, 'id2' => $room->id]) }}" method="POST">
+                        <form action="{{ route('admin.roombooking.update', $room_booking->id) }}" method="POST">
                             @method('put')
                             @csrf
                             
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Room Number<star>*</star></label>
-                                        <input type="text" name="room_number" class="form-control border-input" value="{{ $room->room_number }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea name="description" rows="5" class="form-control border-input"
-                                                  placeholder="">{{ $room->description }}</textarea>
+                                        <label>Status</label>
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="pending"
+                                                    @if ($room_booking->status == 'pending') selected="selected" @endif>Pending
+                                            </option>
+                                            <option value="checked_in"
+                                                    @if ($room_booking->checked_in == 'checked_in') selected="selected" @endif>
+                                                Checked In
+                                            </option>
+                                            <option value="checked_out"
+                                                    @if ($room_booking->checked_out == 'checked_out') selected="selected" @endif>
+                                                Checked Out
+                                            </option>
+                                            <option value="cancelled"
+                                                    @if ($room_booking->cancelled == 'cancelled') selected="selected" @endif>
+                                                Cancelled
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -40,20 +46,20 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Status</label>
-                                        <select name="status" id="status" class="form-control">
+                                        <select name="payment" id="payment" class="form-control">
                                             <option value="1"
-                                                    @if ($room->status == '1') selected="selected" @endif>Active
+                                                    @if ($room_booking->payment == '1') selected="selected" @endif>Paid
                                             </option>
                                             <option value="0"
-                                                    @if ($room->status == '0') selected="selected" @endif>
-                                                Inactive
+                                                    @if ($room_booking->payment == '0') selected="selected" @endif>
+                                                Not Paid
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Room</button>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Booking</button>
                             </div>
                             <div class="clearfix"></div>
                         </form>

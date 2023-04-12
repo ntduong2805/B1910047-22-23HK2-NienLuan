@@ -17,7 +17,7 @@ return [
         'booking' => [
             'name' =>  'Booking',
             'actions' => [
-                'room_booking' => 'admin/room_booking',
+                'view' => 'admin/roombooking',
             ],
             'icon' => 'ti-control-forward'
         ],

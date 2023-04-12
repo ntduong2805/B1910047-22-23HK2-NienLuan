@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Slider')
+@section('title', 'Room Booking')
 
 @section('style')
     @parent
@@ -12,38 +12,49 @@
                     <div class="card">
                         <div class="content">
                             <div class="toolbar">
-                                <a href="{{ route('admin.slider.create')}}" rel="tooltip" title="Add New Image"
-                                   class="btn btn-danger" style="margin-right: 20px">
-                                    <i class="ti-plus"></i>
-                                </a>
                                 <!--Here you can write extra buttons/actions for the toolbar-->
                             </div>
                             <table id="bootstrap-table" class="table">
                                 <thead>
                                 <th data-field="sn" class="text-center">#</th>
-                                <th data-field="id" class="text-center">Slider</th>
-                                <th data-field="small_title" data-sortable="true">Small Title</th>
-                                <th data-field="big_title" data-sortable="true">Big Title</th>
+                                <th data-field="room_number" class="text-center">Room No.</th>
+                                <th data-field="room_type" class="text-center">Type</th>
+                                <th data-field="booked_by" class="text-center">Booked By</th>
                                 <th data-field="status" data-sortable="true">Status</th>
+                                <th data-field="payment" data-sortable="true">Payment</th>
                                 <th data-field="actions" class="td-actions text-right">Actions
                                 </th>
                                 </thead>
                                 <tbody>
-                                @unless($sliders->count())
+                                @unless($room_bookings->count())
                                     @else
-                                        @foreach($sliders as $index => $slider)
+                                        @foreach($room_bookings as $index => $room_booking)
                                             <tr>
                                                 <td>{{$index+1}}</td>
-                                                <td><img height="60px" width="60px" rel="tooltip"  alt="{{ $slider->caption }}" title="{{ $slider->caption }}"
-                                                         src="{{'/storage/sliders/'.$slider->name}}"/></td>
-                                                <td>{{ $slider->small_title }}</td>
-
-                                                <td>{{ $slider->big_title }}</td>
+                                                <td>{{ $room_booking->room->room_number }}</td>
+                                                <td>{{ $room_booking->room->room_type->name }}</td>
+                                                <td>{{ $room_booking->user->first_name." ".$room_booking->user->last_name }}<br>
+                                                    <strong>Email: </strong>{{ $room_booking->user->email }}
+                                                </td>
                                                 <td>
-                                                    @if($slider->status == 1)
-                                                        <button class="btn btn-success btn-xs btn-fill">Active</button>
+                                                    @if($room_booking->status == "pending")
+                                                        <button class="btn btn-success btn-xs btn-fill">Pending</button>
+                                                    @elseif($room_booking->status == "checked_in")
+                                                        <button class="btn btn-info btn-xs btn-fill">Checked In
+                                                        </button>
+                                                    @elseif($room_booking->status == "checked_out")
+                                                        <button class="btn btn-primary btn-xs btn-fill">Checked Out
+                                                        </button>
+                                                    @elseif($room_booking->status == "canceled")
+                                                        <button class="btn btn-danger btn-xs btn-fill">Canceled
+                                                        </button>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($room_booking->payment == 1)
+                                                        <button class="btn btn-success btn-xs btn-fill">Paid</button>
                                                     @else
-                                                        <button class="btn btn-default btn-xs btn-fill">Inactive
+                                                        <button class="btn btn-default btn-xs btn-fill">Not Paid
                                                         </button>
                                                     @endif
                                                 </td>
@@ -52,22 +63,16 @@
 
                                                         <a rel="tooltip" title="Edit"
                                                            class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                           href="{{ route('admin.slider.edit', $slider->id) }}">
+                                                           href="
+                                                           {{ route('admin.roombooking.edit', $room_booking->id) }}
+                                                           {{-- {{url('admin/room_booking/'.$room_booking->id.'/edit')}} --}}
+                                                           ">
                                                             <i class="ti-pencil-alt"></i>
                                                         </a>
-                                                        <button rel="tooltip" title="Remove"
-                                                                class="btn btn-simple btn-danger btn-icon table-action"
-                                                                onclick="delete_button()">
-                                                            <i class="ti-close"></i>
-                                                        </button>
-                                                        <div class="collapse">
-                                                            
-                                                            <form action="{{ route('admin.slider.destroy', $slider->id) }}" id="delete-slider" method="post">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-danger btn-ok">Delete</button>
-                                                            </form>
-                                                        </div>
+                                                        
+
+                                                        
+
 
                                                     </div>
                                                 </td>
@@ -95,7 +100,7 @@
 
         var delete_button = function(){
             swal({  title: "Are you sure?",
-                text: "After you delete the slider image.",
+                text: "After you delete the room booking.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn btn-info btn-fill",
@@ -103,7 +108,7 @@
                 cancelButtonClass: "btn btn-danger btn-fill",
                 closeOnConfirm: false,
             },function(){
-                $('form#delete-slider').submit();
+                $('form#delete-room-booking').submit();
             });
         }
 

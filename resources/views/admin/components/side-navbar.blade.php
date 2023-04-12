@@ -43,44 +43,12 @@
             <ul class="nav">
                 @if($admin_nav)
                     @foreach($admin_nav as $item)
-                        @if(array_key_exists('add', $item['actions']))
-                        <li @if (Request::is('admin/'.strtolower($item['name']).'/create*') || Request::is('admin/'.strtolower($item['name']))) class="active" @endif>
-                            <a data-toggle="collapse" href="#componentsExamples">
-                                <i class="{{$item['icon']}}"></i>
-                                <p>{{$item['name']}}
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div @if (Request::is('admin/'.strtolower($item['name']).'/create*') || Request::is('admin/'.strtolower($item['name']))) class="collapse in" @else class="collapse" @endif id="componentsExamples">
-                                <ul class="nav">
-                                    <li @if (Request::is('admin/'.strtolower($item['name']).'/create*')) class="active" @endif><a href="{{ url($item['actions']['add'])}}">Add</a></li>
-                                    <li @if (Request::is('admin/'.strtolower($item['name']))) class="active" @endif><a href="{{ url($item['actions']['view'])}}">View</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        @elseif(array_key_exists('room_booking', $item['actions']))
-                            <li @if (Request::is('admin/'.strtolower($item['name']).'/*')) class="active" @endif>
-                                <a data-toggle="collapse" href="#componentsExamples">
-                                    <i class="{{$item['icon']}}"></i>
-                                    <p>{{$item['name']}}
-                                        <b class="caret"></b>
-                                    </p>
-                                </a>
-                                <div @if (Request::is('admin/'.strtolower($item['name']).'/*')) class="collapse in" @else class="collapse" @endif id="componentsExamples">
-                                    <ul class="nav">
-                                        <li @if (Request::is('admin/'.strtolower($item['name']).'/room_booking')) class="active" @endif><a href="{{ url($item['actions']['room_booking'])}}">Room Bookings</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        @else
-                            <li @if (Request::is('admin/'.strtolower($item['name']).'/*')) class="active" @endif>
-                                <a href="{{ url($item['actions']['view'])}}">
-                                    <i class="{{$item['icon']}}"></i>
-                                    <p>{{$item['name']}}</p>
-                                </a>
-                            </li>
-                        @endif
+                    <li @if (Request::is('admin/'.strtolower($item['name']).'/*')) class="active" @endif>
+                        <a href="{{ url($item['actions']['view'])}}">
+                            <i class="{{$item['icon']}}"></i>
+                            <p>{{$item['name']}}</p>
+                        </a>
+                    </li>
                     @endforeach
                 @endif
             </ul>

@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@section('title', 'User - Edit | ' . $user->first_name . ' ' . $user->last_name )
+
 @section('style')
     @parent
 @endsection

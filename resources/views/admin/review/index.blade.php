@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Slider')
+@section('title', 'Review')
 
 @section('style')
     @parent
@@ -11,64 +11,52 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="content">
-                            <div class="toolbar">
-                                <a href="{{ route('admin.slider.create')}}" rel="tooltip" title="Add New Image"
-                                   class="btn btn-danger" style="margin-right: 20px">
-                                    <i class="ti-plus"></i>
-                                </a>
-                                <!--Here you can write extra buttons/actions for the toolbar-->
-                            </div>
                             <table id="bootstrap-table" class="table">
                                 <thead>
                                 <th data-field="sn" class="text-center">#</th>
-                                <th data-field="id" class="text-center">Slider</th>
-                                <th data-field="small_title" data-sortable="true">Small Title</th>
-                                <th data-field="big_title" data-sortable="true">Big Title</th>
-                                <th data-field="status" data-sortable="true">Status</th>
+                                <th data-field="user" class="text-center">User</th>
+                                <th data-field="room_type" class="text-center">Room Type</th>
+                                <th data-field="room_number" data-visible="false" class="text-center">Room Number</th>
+                                <th data-field="review">Review</th>
+                                <th data-field="rating">Rating</th>
+                                <th data-field="approval_status" data-sortable="true">Status</th>
                                 <th data-field="actions" class="td-actions text-right">Actions
                                 </th>
                                 </thead>
                                 <tbody>
-                                @unless($sliders->count())
+                                @unless($reviews->count())
                                     @else
-                                        @foreach($sliders as $index => $slider)
+                                        @foreach($reviews as $index => $review)
                                             <tr>
                                                 <td>{{$index+1}}</td>
-                                                <td><img height="60px" width="60px" rel="tooltip"  alt="{{ $slider->caption }}" title="{{ $slider->caption }}"
-                                                         src="{{'/storage/sliders/'.$slider->name}}"/></td>
-                                                <td>{{ $slider->small_title }}</td>
-
-                                                <td>{{ $slider->big_title }}</td>
+                                                <td>{{ $review->room_booking->user->first_name." ".$review->room_booking->user->last_name }}</td>
+                                                <td>{{ $review->room_booking->room->room_type->name }}</td>
+                                                <td>{{ $review->room_booking->room->room_type->name }}</td>
+                                                <td>{{ $review->review }}</td>
+                                                <td>{{ $review->rating }}</td>
                                                 <td>
-                                                    @if($slider->status == 1)
-                                                        <button class="btn btn-success btn-xs btn-fill">Active</button>
+                                                    @if($review->approval_status == "pending")
+                                                        <button class="btn btn-default btn-xs btn-fill">Pending</button>
+                                                    @elseif($review->approval_status == "approved")
+                                                        <button class="btn btn-success btn-xs btn-fill">Approved
+                                                        </button>
                                                     @else
-                                                        <button class="btn btn-default btn-xs btn-fill">Inactive
+                                                        <button class="btn btn-danger btn-xs btn-fill">Rejected
                                                         </button>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     <div class="table-icons">
-
-                                                        <a rel="tooltip" title="Edit"
-                                                           class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                           href="{{ route('admin.slider.edit', $slider->id) }}">
-                                                            <i class="ti-pencil-alt"></i>
+                                                        <a rel="tooltip" title="Approve"
+                                                           class="btn btn-simple btn-success btn-icon table-action approve"
+                                                           href="{{ route('admin.review.approve', $review->id) }}">
+                                                            <i class="ti-check-box"></i>
                                                         </a>
-                                                        <button rel="tooltip" title="Remove"
-                                                                class="btn btn-simple btn-danger btn-icon table-action"
-                                                                onclick="delete_button()">
+                                                        <a rel="tooltip" title="Reject"
+                                                           class="btn btn-simple btn-danger btn-icon table-action reject"
+                                                           href="{{ route('admin.review.reject', $review->id) }}">
                                                             <i class="ti-close"></i>
-                                                        </button>
-                                                        <div class="collapse">
-                                                            
-                                                            <form action="{{ route('admin.slider.destroy', $slider->id) }}" id="delete-slider" method="post">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-danger btn-ok">Delete</button>
-                                                            </form>
-                                                        </div>
-
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -92,10 +80,19 @@
     <!--  Bootstrap Table Plugin    -->
     <script src="{{ asset('backend/js/bootstrap-table.js') }}"></script>
     <script type="text/javascript">
+        $('a.toggle-vis').on( 'click', function (e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column( $(this).attr('data-column') );
+
+            // Toggle the visibility
+            column.visible( ! column.visible() );
+        } );
 
         var delete_button = function(){
             swal({  title: "Are you sure?",
-                text: "After you delete the slider image.",
+                text: "You want to delete the food.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonClass: "btn btn-info btn-fill",
@@ -103,10 +100,9 @@
                 cancelButtonClass: "btn btn-danger btn-fill",
                 closeOnConfirm: false,
             },function(){
-                $('form#delete-slider').submit();
+                $('form#delete-food').submit();
             });
         }
-
 
 
         var $table = $('#bootstrap-table');

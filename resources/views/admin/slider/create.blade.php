@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@section('title', 'Slider - Create')
+
 @section('style')
     @parent
 @endsection

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -45,6 +46,7 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        
+        User::factory()->count(20)->create();
+
     }
 }

@@ -1,4 +1,6 @@
 @extends('layouts.admin')
+@section('title', 'Room Type - Edit')
+
 @section('style')
     @parent
 @endsection

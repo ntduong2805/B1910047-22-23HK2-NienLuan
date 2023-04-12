@@ -146,10 +146,10 @@ class RoomController extends AdminController
     {
         $room = Room::findOrFail($room_id);
 
-        // Delete room bookings
-        // foreach ($room->room_bookings as $booking) {
-        //     $booking->delete();
-        // }
+        //Delete room bookings
+        foreach ($room->room_bookings as $booking) {
+            $booking->delete();
+        }
 
         if($room->delete()){
 
