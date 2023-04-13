@@ -1,73 +1,108 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+    <div class="inn-body-section pad-bot-55">
+        <div class="container">
+            <div class="row">
+                <div class="page-head">
+                    <h2>Login</h2>
+                    <div class="head-title">
+                        <div class="hl-1"></div>
+                        <div class="hl-2"></div>
+                        <div class="hl-3"></div>
+                    </div>
+                </div>
+                <!--TYPOGRAPHY SECTION-->
+                <div class="col-md-6">
+                    <div class="head-typo typo-com collap-expand book-form inn-com-form">
+                        <h2>Log In with Email</h2>
+                        <form class="col s12" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="email" type="email"
+                                           class="validate {{ $errors->has('email') ? ' invalid' : '' }}" value="{{ old('email') }}" required>
+                                    <label>Email Address</label>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="password" type="password"
+                                           class="validate {{ $errors->has('password') ? ' invalid' : '' }}" required>
+                                    <label>Password</label>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input name="remember" type="checkbox" id="test5" {{ old('remember') ? 'checked' : '' }}>
+                                    <label for="test5" style="padding: 1px 33px">Remember Me</label>
+                                    @if ($errors->has('remember'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('remember') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="input-field col s6">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        Forget Your Password
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="submit" value="login">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
+                <div class="col-md-6">
+                    <!--=========================================-->
+                    <div class="hp-call hp-right-com">
+                        <div class="hp-call-in"> <img src="{{ asset("front/images/icon/dbc4.png") }}" alt="">
+                            <h3><span>Call us!</span> {{ config('app.phone_number') }}</h3> <small>We are available 24/7 Monday to Sunday</small> <a href="#">Call Now</a> </div>
+                    </div>
+                    <!--=========================================-->
+                    <!--=========================================-->
+                    
+                    <!--=========================================-->
+                    <!--=========================================-->
+                    <div class="hp-card hp-right-com">
+                        <div class="hp-card-in">
+                            <h3>We Accept</h3> <img src="{{ asset("front/images/card.png") }}" alt=""> </div>
+                    </div>
+                    <!--=========================================-->
+                </div>
+                {{-- <div class="col-md-6">
+                    <div class="head-typo typo-com collap-expand book-form inn-com-form">
+                        <h2>Log in with Social Networks</h2>
+                        <p>Click any button and authorize to login using following social networks.</p>
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="social-btn">
+                                    <a class="waves-light" href="{{ url('/social/auth/redirect', ['twitter']) }}" id="twitter">Log in with Twitter</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="social-btn">
+                                    <a class="waves-light" href="{{ url('/social/auth/redirect', ['google']) }}" id="google">Log in with Google</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> --}}
+                <!--END TYPOGRAPHY SECTION-->
             </div>
         </div>
     </div>
-</div>
 @endsection

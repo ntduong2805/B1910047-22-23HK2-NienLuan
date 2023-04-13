@@ -1,77 +1,128 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+    <div class="inn-body-section pad-bot-55">
+        <div class="container">
+            <div class="row">
+                <div class="page-head">
+                    <h2>Register</h2>
+                    <div class="head-title">
+                        <div class="hl-1"></div>
+                        <div class="hl-2"></div>
+                        <div class="hl-3"></div>
+                    </div>
+                </div>
+                <!--TYPOGRAPHY SECTION-->
+                <div class="col-md-6">
+                    <div class="head-typo typo-com collap-expand book-form inn-com-form">
+                        <h2>Sign up with Email</h2>
+                        <form class="col s12" method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input name="first_name" type="text"
+                                           class="validate {{ $errors->has('first_name') ? ' invalid' : '' }}" value="{{ old('first_name') }}" required autofocus>
+                                    <label>First Name</label>
+                                    @if ($errors->has('first_name'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('first_name') }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                    @endif
+                                </div>
+                                <div class="input-field col s6">
+                                    <input name="last_name" type="text"
+                                           class="validate {{ $errors->has('last_name') ? ' invalid' : '' }}" value="{{ old('last_name') }}" required>
+                                    <label>Last Name</label>
+                                    @if ($errors->has('last_name'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
                                     </span>
-                                @enderror
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="email" type="email"
+                                           class="validate {{ $errors->has('email') ? ' invalid' : '' }}" value="{{ old('email') }}" required>
+                                    <label>Email Address</label>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @enderror
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="gender">
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="male" @if(old('gender') == "male") selected="selected" @endif>Male
+                                        </option>
+                                        <option value="female" @if(old('gender') == "female") selected="selected" @endif>Female
+                                        </option>
+                                        <option value="others" @if(old('gender') == "others") selected="selected" @endif>Others
+                                        </option>
+                                    </select>
+                                    @if ($errors->has('gender'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="password" type="password"
+                                           class="validate {{ $errors->has('password') ? ' invalid' : '' }}" required>
+                                    <label>Password</label>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input name="password_confirmation" type="password"
+                                           class="validate {{ $errors->has('password_confirmation') ? ' invalid' : '' }}"
+                                           required>
+                                    <label>Confirm Password</label>
+                                    @if ($errors->has('password_confirmation'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="submit" value="register">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!--END TYPOGRAPHY SECTION-->
+                <div class="col-md-6">
+                    <!--=========================================-->
+                    <div class="hp-call hp-right-com">
+                        <div class="hp-call-in"> <img src="{{ asset("front/images/icon/dbc4.png") }}" alt="">
+                            <h3><span>Call us!</span> {{ config('app.phone_number') }}</h3> <small>We are available 24/7 Monday to Sunday</small> <a href="#">Call Now</a> </div>
+                    </div>
+                    <!--=========================================-->
+                    <!--=========================================-->
+                    
+                    <!--=========================================-->
+                    <!--=========================================-->
+                    <div class="hp-card hp-right-com">
+                        <div class="hp-card-in">
+                            <h3>We Accept</h3> <img src="{{ asset("front/images/card.png") }}" alt=""> </div>
+                    </div>
+                    <!--=========================================-->
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

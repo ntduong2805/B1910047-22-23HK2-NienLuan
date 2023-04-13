@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Front\HotelController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-
+//Admin Routes
 Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
 
@@ -100,5 +101,8 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
         Route::get('/reject/{id}', 'reject')->name('reject');
 
     });
+    
 });
+//Front Routes
+Route::get('/', [HotelController::class, 'index'])->name('hotel');
 

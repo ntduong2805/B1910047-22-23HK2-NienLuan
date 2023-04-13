@@ -36,7 +36,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{  route('admin.user.edit', Auth::user()->id) }}">Edit Profile</a></li>
-                        <li><a href="{{ url('/') }}">Visit App</a></li>
+                        <li><a href="
+                            {{ route('hotel') }}
+                            ">Visit App</a></li>
                         <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();

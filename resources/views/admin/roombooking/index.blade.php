@@ -45,8 +45,8 @@
                                                     @elseif($room_booking->status == "checked_out")
                                                         <button class="btn btn-primary btn-xs btn-fill">Checked Out
                                                         </button>
-                                                    @elseif($room_booking->status == "canceled")
-                                                        <button class="btn btn-danger btn-xs btn-fill">Canceled
+                                                    @elseif($room_booking->status == "cancelled")
+                                                        <button class="btn btn-danger btn-xs btn-fill">Cancelled
                                                         </button>
                                                     @endif
                                                 </td>
