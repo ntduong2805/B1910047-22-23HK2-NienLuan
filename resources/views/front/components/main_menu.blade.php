@@ -2,14 +2,14 @@
     <!--TOP SECTION-->
     <div class="row">
         <div class="logo">
-            <a href="{{ url('/') }}"><img src="{{ asset("front/images/logo.png") }}" alt=""/>
+            <a href="{{ route('hotel') }}"><img src="{{ asset("front/images/logo.png") }}" alt=""/>
             </a>
         </div>
         <div class="menu-bar">
             <ul>
                 <li><a href="{{ url('/') }}">Home</a>
                 </li>
-                <li><a href="{{ url('/room_type') }}">Rooms</a>
+                <li><a href="{{ route('rooms') }}">Rooms</a>
                 </li>
                 <li><a href="{{ url('/about') }}">About</a>
                 </li>

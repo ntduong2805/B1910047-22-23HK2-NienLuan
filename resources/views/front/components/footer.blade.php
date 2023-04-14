@@ -14,7 +14,7 @@
                                     <div class="col-sm-12 col-md-3">
                                         <h4>Support &amp; Help</h4>
                                         <ul class="two-columns">
-                                            <li><a href="{{ '/room_type' }}">Rooms</a>
+                                            <li><a href="{{ route('rooms') }}">Rooms</a>
                                             </li>
                                             <li><a href="{{ url('/contact') }}">Contact Us</a>
                                             </li>

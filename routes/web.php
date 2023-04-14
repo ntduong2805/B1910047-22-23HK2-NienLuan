@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Front\BookingController;
 use App\Http\Controllers\Front\HotelController;
+use App\Http\Controllers\Front\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -105,4 +107,7 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
 });
 //Front Routes
 Route::get('/', [HotelController::class, 'index'])->name('hotel');
+Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
+Route::get('/rooms/{id}', [RoomsController::class, 'show'])->name('rooms.show');
+Route::post('/book/{id}', [BookingController::class, 'book'])->name('book');
 

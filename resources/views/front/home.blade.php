@@ -53,7 +53,7 @@
                                 <div class="hom-hot-av-tic"> Available Rooms: {{ count($roomtype->rooms) }} </div> <img src="{{'/storage/roomtypes/'.$roomtype->images->first()->name}}" alt=""> </div>
                             <div class="to-ho-hotel-con-23">
                                 <div class="to-ho-hotel-con-2"> <a href="
-                                    {{-- {{url('/room_type/'.$room_type->id)}} --}}
+                                    {{ route('rooms.show', $roomtype->id) }}
                                     "><h4>{{ $roomtype->name }}</h4></a> </div>
                                 <div class="to-ho-hotel-con-3">
                                     <ul>

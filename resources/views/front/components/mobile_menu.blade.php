@@ -15,7 +15,7 @@
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a>
                     </li>
-                    <li><a href="{{ url('/room_type') }}">Rooms</a>
+                    <li><a href="{{ route('rooms') }}">Rooms</a>
                     </li>
                     <li><a href="{{ url('/about') }}">About</a>
                     </li>
