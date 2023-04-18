@@ -4,7 +4,7 @@
     <div class="mm">
         <div class="mm-inn">
             <div class="mm-logo">
-                <a href="main.html"><img src="{{ asset("front/images/logo.png") }}" alt="">
+                <a href="{{ route('hotel') }}"><img src="{{ asset("front/images/logo.png") }}" alt="">
                 </a>
             </div>
             <div class="mm-icon"><span><i class="fa fa-bars show-menu" aria-hidden="true"></i></span>
@@ -13,13 +13,13 @@
                 <div class="mm-close"><span><i class="fa fa-times hide-menu" aria-hidden="true"></i></span>
                 </div>
                 <ul>
-                    <li><a href="{{ url('/') }}">Home</a>
+                    <li><a href="{{ route('hotel') }}">Home</a>
                     </li>
                     <li><a href="{{ route('rooms') }}">Rooms</a>
                     </li>
-                    <li><a href="{{ url('/about') }}">About</a>
+                    <li><a href="{{ route('about') }}">About</a>
                     </li>
-                    <li><a href="{{ url('/contact') }}">Contact Us</a>
+                    <li><a href="{{ route('contact') }}">Contact Us</a>
                     </li>
                 </ul>
             </div>

@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Image;
-use App\Models\Review;
-use App\Models\RoomType;
-use App\Models\Slider;
+use App\Models\RoomBooking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HotelController extends FrontContronller
+class HomeController extends DashboardController
 {
-    public function __construct()
-    {
-       
-    }
     /**
      * Display a listing of the resource.
      *
@@ -22,41 +16,25 @@ class HotelController extends FrontContronller
      */
     public function index()
     {
-        $slider_images = Slider::where('status', 1)->get();
-        $roomtypes = RoomType::whereHas('images', function ($query){
-           $query->where('is_primary', true);
-        })->with([
-            'images' => function($query){
-            $query->where('is_primary', true)->where('status', true);
-        },
-            'rooms' => function($query){
-                $query->where('status', true);
-            }])
-            ->where('status', 1)
-            ->orderBy('id', 'asc')
+        $room_bookings = RoomBooking::with('room')
+            ->where('user_id', Auth::user()->id)
+            ->limit(5)
+            ->orderBy('created_at', 'asc')
             ->get();
-        
-        $reviews = Review::where('approval_status', "approved")
-            ->orderBy('updated_at', 'desc')
-            ->limit('4')
-            ->get();
-        $images = Image::all();
-        
-        return view('front.home')->with([
-            'slider_images' => $slider_images,
-            'roomtypes' => $roomtypes,
-            'reviews' => $reviews,
-            'images' => $images,
+        $total_room_bookings = RoomBooking::where('user_id', Auth::user()->id)->count();
+        $total_pending_payments = RoomBooking::where('user_id', Auth::user()->id)->where('payment', 0)->count();
+
+        $room_booking_with_reviews = RoomBooking::whereHas('review', function($query){
+            $query->where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->limit(5);
+        })->get();
+        return view('dashboard.home')->with([
+            'room_bookings' => $room_bookings,
+            'total_room_bookings' => $total_room_bookings,
+            'total_pending_payments' => $total_pending_payments,
+            'room_booking_with_reviews' => $room_booking_with_reviews,
         ]);
     }
-    public function about()
-    {
-        return view('front.about');
-    }
-    public function contact()
-    {
-        return view('front.contact');
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -97,7 +75,7 @@ class HotelController extends FrontContronller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

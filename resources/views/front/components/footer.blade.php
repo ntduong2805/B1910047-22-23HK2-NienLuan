@@ -16,9 +16,9 @@
                                         <ul class="two-columns">
                                             <li><a href="{{ route('rooms') }}">Rooms</a>
                                             </li>
-                                            <li><a href="{{ url('/contact') }}">Contact Us</a>
+                                            <li><a href="{{ route('contact') }}">Contact Us</a>
                                             </li>
-                                            <li><a href="{{ url('/about') }}">About Us</a>
+                                            <li><a href="{{ route('about') }}">About Us</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -27,7 +27,6 @@
                                         <ul class="two-columns">
                                             @foreach(\App\Models\RoomType::where('status', true)->orderBy('updated_at','desc')->limit('8')->get() as $type)
                                             <li><a href="
-                                                {{-- {{ url('/room_type/'.$room_type->id) }} --}}
                                                 ">{{ $type->name }}</a>
                                             </li>
                                             @endforeach

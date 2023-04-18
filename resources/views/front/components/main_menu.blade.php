@@ -7,13 +7,13 @@
         </div>
         <div class="menu-bar">
             <ul>
-                <li><a href="{{ url('/') }}">Home</a>
+                <li><a href="{{ route('hotel') }}">Home</a>
                 </li>
                 <li><a href="{{ route('rooms') }}">Rooms</a>
                 </li>
-                <li><a href="{{ url('/about') }}">About</a>
+                <li><a href="{{ route('about') }}">About</a>
                 </li>
-                <li><a href="{{ url('/contact') }}">Contact Us</a>
+                <li><a href="{{ route('contact') }}">Contact Us</a>
                 </li>
 
 

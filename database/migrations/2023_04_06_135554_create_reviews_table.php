@@ -16,7 +16,7 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
             $table->string('review', 100);
-            $table->enum('rating', ['0', '1', '2', '3', '4', '5']);
+            $table->enum('rating', [0, 1, 2, 3, 4, 5]);
             $table->enum('approval_status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->integer('room_booking_id')->unsigned()->index();
 

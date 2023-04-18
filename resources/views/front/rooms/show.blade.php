@@ -48,9 +48,7 @@
                                     <select name="number_of_adult">
                                         <option value="" disabled selected>No of adults</option>
                                         @for($i = 1; $i <= $roomtype->max_adult; $i++ )
-                                            <option value="{{ $i }}" {{ old('number_of_adult') == $i && old('number_of_adult') != 0 ? 'selected' : '' }} >
-                                                {{ $i }}
-                                            </option>
+                                            <option value="{{ $i }}" {{ old('number_of_adult') == $i && old('number_of_adult') != 0 ? 'selected' : '' }} >{{ $i }}</option>
                                         @endfor
                                     </select>
                                 </div>
@@ -59,9 +57,7 @@
                                     <select name="number_of_child">
                                         <option value="" disabled selected>No of childs</option>
                                         @for($i = 0; $i <= $roomtype->max_adult; $i++ )
-                                            <option value="{{ $i }}" {{ old('number_of_child') == $i && old('number_of_child') != 0 ? 'selected' : '' }}>
-                                                {{ $i }}
-                                            </option>
+                                            <option value="{{ $i }}" {{ old('number_of_child') == $i && old('number_of_child') != 0 ? 'selected' : '' }}>{{ $i }}</option>
                                         @endfor
                                     </select>
                                 </div>

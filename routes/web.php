@@ -9,9 +9,13 @@ use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Dashboard\BookingController as DashboardBookingController;
 use App\Http\Controllers\Front\BookingController;
 use App\Http\Controllers\Front\HotelController;
 use App\Http\Controllers\Front\RoomsController;
+use App\Http\Controllers\Dashboard\HomeController as DashboardController;
+use App\Http\Controllers\Dashboard\ReviewController as DashboardReviewController;
+use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -107,7 +111,27 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
 });
 //Front Routes
 Route::get('/', [HotelController::class, 'index'])->name('hotel');
+Route::get('/about', [HotelController::class, 'about'])->name('about');
+Route::get('/contact', [HotelController::class, 'contact'])->name('contact');
+//Front Booking Routes
 Route::get('/rooms', [RoomsController::class, 'index'])->name('rooms');
 Route::get('/rooms/{id}', [RoomsController::class, 'show'])->name('rooms.show');
 Route::post('/book/{id}', [BookingController::class, 'book'])->name('book');
+
+//Front Dashboard Routes
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [DashboardUserController::class, 'profile'])->name('dashboard.profile');
+    Route::put('/profile', [DashboardUserController::class, 'update'])->name('dashboard.profile');
+    Route::get('/setting', [DashboardUserController::class, 'setting'])->name('dashboard.setting');
+    Route::put('/setting', [DashboardUserController::class, 'update_setting'])->name('dashboard.setting');
+    Route::get('room', [DashboardBookingController::class, 'index'])->name('dashboard.room');
+    Route::get('room/{id}', [DashboardBookingController::class, 'cancel'])->name('dashboard.roomcancel');
+    Route::get('/review/{id}', [DashboardReviewController::class, 'index'])->name('dashboard.review');
+    Route::post('/review/{id}', [DashboardReviewController::class, 'store'])->name('dashboard.review');
+
+});
+
+
+
 

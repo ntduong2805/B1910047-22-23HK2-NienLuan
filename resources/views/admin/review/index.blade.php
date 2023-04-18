@@ -16,7 +16,7 @@
                                 <th data-field="sn" class="text-center">#</th>
                                 <th data-field="user" class="text-center">User</th>
                                 <th data-field="room_type" class="text-center">Room Type</th>
-                                <th data-field="room_number" data-visible="false" class="text-center">Room Number</th>
+                                <th data-field="room_number" class="text-center">R.N.</th>
                                 <th data-field="review">Review</th>
                                 <th data-field="rating">Rating</th>
                                 <th data-field="approval_status" data-sortable="true">Status</th>
@@ -31,7 +31,7 @@
                                                 <td>{{$index+1}}</td>
                                                 <td>{{ $review->room_booking->user->first_name." ".$review->room_booking->user->last_name }}</td>
                                                 <td>{{ $review->room_booking->room->room_type->name }}</td>
-                                                <td>{{ $review->room_booking->room->room_type->name }}</td>
+                                                <td>{{ $review->room_booking->room->room_number }}</td>
                                                 <td>{{ $review->review }}</td>
                                                 <td>{{ $review->rating }}</td>
                                                 <td>
