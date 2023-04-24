@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 200)->nullable();
             $table->string('avatar', 200)->nullable();
             $table->string('about', 300)->nullable();
-            $table->enum('role', ['admin', 'user'])->default('user');
+            $table->enum('role', ['admin', 'user', 'customer'])->default('customer');
             $table->boolean('status')->default(true);
             $table->rememberToken();
             $table->timestamps();

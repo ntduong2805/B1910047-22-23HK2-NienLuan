@@ -56,17 +56,17 @@
                                 <div class="input-field col s12">
                                     <select name="gender">
                                         <option value="" disabled selected>Select Gender</option>
-                                        <option value="male" @if(old('gender') == "male") selected="selected" @endif>Male
+                                        <option value="male" @if($user->gender == "male") selected="selected"@endif>Male
                                         </option>
-                                        <option value="female" @if(old('gender') == "female") selected="selected" @endif>Female
+                                        <option value="female" @if($user->gender == "female") selected="selected"@endif>Female
                                         </option>
-                                        <option value="others" @if(old('gender') == "others") selected="selected" @endif>Others
+                                        <option value="others" @if($user->gender == "others") selected="selected"@endif>Others
                                         </option>
                                     </select>
                                     @if ($errors->has('gender'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('gender') }}</strong>
+                                            </span>
                                     @endif
                                 </div>
                             </div>

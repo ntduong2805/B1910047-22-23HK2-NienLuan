@@ -3,7 +3,7 @@
 
 
 <head>
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title', 'Dashboard') </title>
     <!-- META TAGS -->
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

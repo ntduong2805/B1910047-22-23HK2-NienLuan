@@ -1,5 +1,5 @@
 @extends('layouts.front')
-
+@section('title', 'The Royal Hotel | Contact')
 @section('content')
 
     <div class="inn-banner">

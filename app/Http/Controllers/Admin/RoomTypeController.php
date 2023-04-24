@@ -124,7 +124,7 @@ class RoomTypeController extends AdminController
     {
         $roomtype = RoomType::find($id);
         $rules = [
-            'name' => 'required|max:50|unique:roomtypes,name,'.$id,
+            'name' => 'required|max:50|unique:room_types,name,'.$id,
             'cost_per_day' => 'required|numeric|min:0',
             'size' => 'numeric|min:0',
             'discount_percentage' => 'integer|between:0,100',
@@ -169,31 +169,31 @@ class RoomTypeController extends AdminController
      */
     public function destroy($id)
     {
-        $roomtype = RoomType::find($id);
+        $room_type = RoomType::find($id);
 
         // Delete rooms
-        foreach ($roomtype->room as $room) {
-            // Delete room bookings
-            foreach ($room->room_bookings as $booking) {
-                $booking->delete();
-            }
-            $room->delete();
-        }
+        // foreach ($room_type->room as $room) {
+        //     // Delete room bookings
+        //     foreach ($room->room_bookings as $booking) {
+        //         $booking->delete();
+        //     }
+        //     $room->delete();
+        // }
 
         // Delete images
-        foreach ($roomtype->images as $image) {
-            if ($image->delete()) {
-                if (Storage::disk('roomtypes')->exists($image->name)) {
-                    Storage::delete('public/roomtypes/' . $image->name);
-                }
-            }
-        }
+        // foreach ($room_type->images as $image) {
+        //     if ($image->delete()) {
+        //         if (Storage::disk('roomtypes')->exists($image->name)) {
+        //             Storage::delete('public/roomtypes/' . $image->name);
+        //         }
+        //     }
+        // }
         // TO_DO_DEM Clear all Facilities by Eloquent remove pivot records
 
-        $roomtype->delete();
+        $room_type->delete();
 
         Session::flash('flash_title', 'Success');
-        Session::flash('flash_message', 'The roomtype has been deleted successfully');
+        Session::flash('flash_message', 'The room_type has been deleted successfully');
         return redirect()->route('admin.roomtype.index');
     }
 }

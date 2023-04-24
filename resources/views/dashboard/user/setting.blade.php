@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+@section('title', 'Dashboard | Setting')
 
 @section('content')
     <div class="db-cent-3">

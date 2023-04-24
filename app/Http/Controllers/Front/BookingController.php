@@ -30,7 +30,7 @@ class BookingController extends Controller
         }
         $rules = [
             'number_of_adult' => 'required|numeric|min:1',
-            'number_of_child' => 'required|numeric|min:1',
+            'number_of_child' => 'required|numeric|min:0',
             'arrival_date' => 'required|date|date_format:Y/m/d|after_or_equal:today',
             'departure_date' => 'required|date|date_format:Y/m/d|after_or_equal:'.$request->input('arrival_date'),
         ];
@@ -62,7 +62,7 @@ class BookingController extends Controller
         $room_booking->save();
         Session::flash('flash_title', "Success");
         Session::flash('flash_message', "Room has been Booked");
-        return redirect()->route('hotel');
+        return redirect()->route('dashboard');
     }   
     public function index()
     {

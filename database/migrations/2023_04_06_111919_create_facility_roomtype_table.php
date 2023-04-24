@@ -21,7 +21,7 @@ class CreateFacilityRoomTypeTable extends Migration
             //QUAN HE
 
             $table->foreign('facility_id')->references('id')->on('facilities')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('room_type_id')->references('id')->on('roomtypes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('room_type_id')->references('id')->on('room_types')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

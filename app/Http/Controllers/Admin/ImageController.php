@@ -68,9 +68,9 @@ class ImageController extends AdminController
 
             $image->caption = $request->input('caption');
             $image->is_primary = $request->input('is_primary');
-            if($image->is_primary == true){
-                $this->set_is_primary_false($id);
-            }
+            // if($image->is_primary == true){
+            //     $this->set_is_primary_false($id);
+            // }
 
             $image->status = $request->input('status');
             $image->room_type_id = $id;
@@ -145,9 +145,9 @@ class ImageController extends AdminController
             }
             $image->caption = $request->input('caption');
             $image->is_primary = $request->input('is_primary');
-            if($image->is_primary == true){
-                $this->set_is_primary_false($id);
-            }
+            // if($image->is_primary == true){
+            //     $this->set_is_primary_false($id);
+            // }
             $image->status = $request->input('status');
             $image->save();
 

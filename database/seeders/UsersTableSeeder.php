@@ -46,6 +46,21 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+        DB::table('users')->insert([
+            'first_name' => "Ng",
+            'last_name' => "Vu",
+            'gender' => "male",
+            'phone' => "0913854606",
+            'address' => "Can Tho, Viet Nam",
+            'email' => "vu@gmail.com",
+            'password' => bcrypt('password'),
+            'avatar' => 'boy-3.png',
+            'about' => "hello from the other world",
+            'role' => 'user',
+            'status' => TRUE,
+            'remember_token' => Str::random(10),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
         User::factory()->count(20)->create();
 
     }

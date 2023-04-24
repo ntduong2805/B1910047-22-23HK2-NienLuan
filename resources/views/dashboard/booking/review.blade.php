@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+@section('title', 'Dashboard | Review')
 
 @section('content')
 <div class="db-profile-view">

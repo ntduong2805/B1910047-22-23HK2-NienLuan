@@ -74,6 +74,7 @@
                                                         <div class="collapse">
                                                             <form action="{{ route('admin.roomtype.destroy', $roomtype->id) }}" id="delete-roomtype" method="POST">
                                                                 @method('delete')
+                                                                @csrf
                                                                 <button type="submit" class="btn btn-danger btn-ok">Delete</button>
                                                             
                                                             </form>

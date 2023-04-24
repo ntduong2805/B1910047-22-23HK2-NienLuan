@@ -14,9 +14,16 @@
                             <h4 class="title">Update Booking Status</h4>
                         </div>
                         <div class="content">
-                        <form action="{{ route('admin.roombooking.update', $room_booking->id) }}" method="POST">
+                        <form action="
+                        @if(Auth::user()->role == "admin")
+                            {{ route('admin.roombooking.update', $room_booking->id) }}
+                        @else
+                            {{ route('roombooking.update', $room_booking->id) }}
+                        @endif
+                        " method="POST">
                             @method('put')
                             @csrf
+                        
                             
                             <div class="row">
                                 <div class="col-md-12">
@@ -45,7 +52,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Status</label>
+                                        <label>Payment</label>
                                         <select name="payment" id="payment" class="form-control">
                                             <option value="1"
                                                     @if ($room_booking->payment == '1') selected="selected" @endif>Paid

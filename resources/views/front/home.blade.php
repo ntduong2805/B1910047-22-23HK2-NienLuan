@@ -1,5 +1,5 @@
 @extends('layouts.front')
-
+@section('title', 'The Royal Hotel')
 @section('content')
     <!--Check Availability SECTION-->
     <div>

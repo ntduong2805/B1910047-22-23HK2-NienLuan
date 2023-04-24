@@ -2,20 +2,20 @@
 @section('title', 'Room Booking')
 
 @section('style')
-    @parent
+@parent
 @endsection
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="content">
-                            <div class="toolbar">
-                                <!--Here you can write extra buttons/actions for the toolbar-->
-                            </div>
-                            <table id="bootstrap-table" class="table">
-                                <thead>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <div class="toolbar">
+                            <!--Here you can write extra buttons/actions for the toolbar-->
+                        </div>
+                        <table id="bootstrap-table" class="table">
+                            <thead>
                                 <th data-field="sn" class="text-center">#</th>
                                 <th data-field="room_number" class="text-center">Room No.</th>
                                 <th data-field="room_type" class="text-center">Type</th>
@@ -24,81 +24,85 @@
                                 <th data-field="payment" data-sortable="true">Payment</th>
                                 <th data-field="actions" class="td-actions text-right">Actions
                                 </th>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
                                 @unless($room_bookings->count())
-                                    @else
-                                        @foreach($room_bookings as $index => $room_booking)
-                                            <tr>
-                                                <td>{{$index+1}}</td>
-                                                <td>{{ $room_booking->room->room_number }}</td>
-                                                <td>{{ $room_booking->room->room_type->name }}</td>
-                                                <td>{{ $room_booking->user->first_name." ".$room_booking->user->last_name }}<br>
-                                                    <strong>Email: </strong>{{ $room_booking->user->email }}
-                                                </td>
-                                                <td>
-                                                    @if($room_booking->status == "pending")
-                                                        <button class="btn btn-success btn-xs btn-fill">Pending</button>
-                                                    @elseif($room_booking->status == "checked_in")
-                                                        <button class="btn btn-info btn-xs btn-fill">Checked In
-                                                        </button>
-                                                    @elseif($room_booking->status == "checked_out")
-                                                        <button class="btn btn-primary btn-xs btn-fill">Checked Out
-                                                        </button>
-                                                    @elseif($room_booking->status == "cancelled")
-                                                        <button class="btn btn-danger btn-xs btn-fill">Cancelled
-                                                        </button>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if($room_booking->payment == 1)
-                                                        <button class="btn btn-success btn-xs btn-fill">Paid</button>
-                                                    @else
-                                                        <button class="btn btn-default btn-xs btn-fill">Not Paid
-                                                        </button>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <div class="table-icons">
+                                @else
+                                @foreach($room_bookings as $index => $room_booking)
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{ $room_booking->room->room_number }}</td>
+                                    <td>{{ $room_booking->room->room_type->name }}</td>
+                                    <td>{{ $room_booking->user->first_name." ".$room_booking->user->last_name }}<br>
+                                        <strong>Email: </strong>{{ $room_booking->user->email }}
+                                    </td>
+                                    <td>
+                                        @if($room_booking->status == "pending")
+                                        <button class="btn btn-success btn-xs btn-fill">Pending</button>
+                                        @elseif($room_booking->status == "checked_in")
+                                        <button class="btn btn-info btn-xs btn-fill">Checked In
+                                        </button>
+                                        @elseif($room_booking->status == "checked_out")
+                                        <button class="btn btn-primary btn-xs btn-fill">Checked Out
+                                        </button>
+                                        @elseif($room_booking->status == "cancelled")
+                                        <button class="btn btn-danger btn-xs btn-fill">Cancelled
+                                        </button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($room_booking->payment == 1)
+                                        <button class="btn btn-success btn-xs btn-fill">Paid</button>
+                                        @else
+                                        <button class="btn btn-default btn-xs btn-fill">Not Paid
+                                        </button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="table-icons">
 
-                                                        <a rel="tooltip" title="Edit"
-                                                           class="btn btn-simple btn-warning btn-icon table-action edit"
-                                                           href="
-                                                           {{ route('admin.roombooking.edit', $room_booking->id) }}
-                                                           {{-- {{url('admin/room_booking/'.$room_booking->id.'/edit')}} --}}
-                                                           ">
-                                                            <i class="ti-pencil-alt"></i>
-                                                        </a>
-                                                        
-
-                                                        
-
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        @endunless
-                                </tbody>
-                            </table>
-                        </div>
-                    </div><!--  end card  -->
-                </div> <!-- end col-md-12 -->
-            </div> <!-- end row -->
-        </div>
+                                            @if (Auth::user()->role == "admin")
+                                            <a rel="tooltip" title="Edit"
+                                                class="btn btn-simple btn-warning btn-icon table-action edit" href="
+                                                        {{ route('admin.roombooking.edit', $room_booking->id) }}
+                                                        {{-- {{url('admin/room_booking/'.$room_booking->id.'/edit')}} --}}
+                                                        ">
+                                                <i class="ti-pencil-alt"></i>
+                                            </a>
+                                            @endif
+                                            @if (Auth::user()->role == "user")
+                                            <a rel="tooltip" title="Edit"
+                                                class="btn btn-simple btn-warning btn-icon table-action edit" href="
+                                                        {{ route('roombooking.edit', $room_booking->id) }}
+                                                        {{-- {{url('admin/room_booking/'.$room_booking->id.'/edit')}} --}}
+                                                        ">
+                                                <i class="ti-pencil-alt"></i>
+                                            </a>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endunless
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--  end card  -->
+            </div> <!-- end col-md-12 -->
+        </div> <!-- end row -->
     </div>
+</div>
 @endsection
 @section('scripts')
-    @parent
+@parent
 
-    <!-- Sweet Alert 2 plugin -->
-    <script src="{{ asset('backend/js/sweetalert2.js') }}"></script>
+<!-- Sweet Alert 2 plugin -->
+<script src="{{ asset('backend/js/sweetalert2.js') }}"></script>
 
-    <!--  Bootstrap Table Plugin    -->
-    <script src="{{ asset('backend/js/bootstrap-table.js') }}"></script>
-    <script type="text/javascript">
-
-        var delete_button = function(){
+<!--  Bootstrap Table Plugin    -->
+<script src="{{ asset('backend/js/bootstrap-table.js') }}"></script>
+<script type="text/javascript">
+    var delete_button = function(){
             swal({  title: "Are you sure?",
                 text: "After you delete the room booking.",
                 type: "warning",
@@ -152,6 +156,5 @@
             });
         });
 
-    </script>
+</script>
 @endsection
-

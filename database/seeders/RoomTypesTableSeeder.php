@@ -15,7 +15,7 @@ class RoomTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roomtypes')->insert([
+        DB::table('room_types')->insert([
             'name' => "Master Suite",
             'cost_per_day' => 2500000,
             'discount_percentage' => 5,
@@ -28,7 +28,7 @@ class RoomTypesTableSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('roomtypes')->insert([
+        DB::table('room_types')->insert([
             'name' => "Mini Suite",
             'cost_per_day' => 1800000,
             'discount_percentage' => 10,
@@ -41,7 +41,7 @@ class RoomTypesTableSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('roomtypes')->insert([
+        DB::table('room_types')->insert([
             'name' => "Ultra Deluxe",
             'cost_per_day' => 1400000,
             'size' => 1400,
@@ -54,7 +54,7 @@ class RoomTypesTableSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('roomtypes')->insert([
+        DB::table('room_types')->insert([
             'name' => "Luxury Room",
             'cost_per_day' => 900000,
             'size' => 800,
@@ -67,7 +67,7 @@ class RoomTypesTableSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('roomtypes')->insert([
+        DB::table('room_types')->insert([
             'name' => "Premium Room",
             'cost_per_day' => 600000,
             'size' => 500,
@@ -80,7 +80,7 @@ class RoomTypesTableSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-        DB::table('roomtypes')->insert([
+        DB::table('room_types')->insert([
             'name' => "Normal Room",
             'cost_per_day' => 300000,
             'size' => 300,

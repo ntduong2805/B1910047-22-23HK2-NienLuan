@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RoomType extends Model
 {
     use HasFactory;
-    protected $table = 'roomtypes';
+    protected $table = 'room_types';
     protected $fillable = [
         'name',
         'cost_per_day',

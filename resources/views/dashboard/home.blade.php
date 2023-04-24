@@ -39,7 +39,7 @@
                         <td>{{ $room_booking->room->room_type->name}}</td>
                         <td>{{ $room_booking->arrival_date }}</td>
                         <td>{{ $room_booking->departure_date }}</td>
-                        <td>Rs. {{ $room_booking->room_cost }}</td>
+                        <td>{{ number_format($room_booking->room_cost) }}VNĐ</td>
                         <td>
                             @if($room_booking->status == "pending")
                                 <span class="label label-default">Pending</span>
@@ -78,7 +78,7 @@
             <ul>
                 @forelse($room_booking_with_reviews as $room_booking)
                 <li>
-                    <div class="db-cent-wr-img"> <img src="{{ asset("front/images/users/3.png") }}" alt=""> </div>
+                    <div class="db-cent-wr-img"> <img src="{{ asset("/storage/avatars/" .Auth::user()->avatar)}}" alt=""> </div>
                     <div class="db-cent-wr-con">
                         <h6>Hotel Booking
                             @if($room_booking->status == "cancelled")

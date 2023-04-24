@@ -39,7 +39,7 @@ class UserFactory extends Factory
             'password' => bcrypt('password'),
             'avatar' => $avatar,
             'about' => $this->faker->text($maxNbChars = 200),
-            'role' => 'user',
+            'role' => 'customer',
             'status' => TRUE,
             'remember_token' => Str::random(10),
         ];

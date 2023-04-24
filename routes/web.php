@@ -32,7 +32,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+// Social Logins
+Route::get('social/auth/redirect/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('social/auth/{provider}', 'Auth\AuthController@handleProviderCallback');
 
 Auth::routes();
 //Admin Routes
@@ -69,7 +71,7 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
             Route::put('/update/{id}', 'update')->name('update');
             Route::delete('/destroy/{id}', 'destroy')->name('destroy');
     });
-    
+    // RoomType Routes
     Route::prefix('roomtype')->middleware('auth')->controller(RoomTypeController::class)
         ->name('.roomtype.')->group(function(){
             Route::get('/', 'index')->name('index');
@@ -87,6 +89,7 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
                 Route::put('/{id1}/update/{id2}', 'update')->name('update');
                 Route::delete('/{id1}/destroy/{id2}', 'destroy')->name('destroy');
             });
+            //
             Route::prefix('room')->controller(RoomController::class)->name('room.')->group(function(){
                 Route::get('/{id}', 'index')->name('index');
                 Route::get('/{id}/create', 'create')->name('create');
@@ -109,6 +112,12 @@ Route::prefix('admin')->middleware('admin')->name('admin')->group(function () {
     });
     
 });
+Route::prefix('roombooking')->middleware('user')->controller(RoomBookingController::class)->name('roombooking.')->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::put('/update/{id}', 'update')->name('update');
+});
+
 //Front Routes
 Route::get('/', [HotelController::class, 'index'])->name('hotel');
 Route::get('/about', [HotelController::class, 'about'])->name('about');
@@ -121,12 +130,15 @@ Route::post('/book/{id}', [BookingController::class, 'book'])->name('book');
 //Front Dashboard Routes
 Route::prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    //Dashboard User
     Route::get('/profile', [DashboardUserController::class, 'profile'])->name('dashboard.profile');
     Route::put('/profile', [DashboardUserController::class, 'update'])->name('dashboard.profile');
     Route::get('/setting', [DashboardUserController::class, 'setting'])->name('dashboard.setting');
     Route::put('/setting', [DashboardUserController::class, 'update_setting'])->name('dashboard.setting');
+    //DashBoard Book
     Route::get('room', [DashboardBookingController::class, 'index'])->name('dashboard.room');
     Route::get('room/{id}', [DashboardBookingController::class, 'cancel'])->name('dashboard.roomcancel');
+    //DashBoard Review
     Route::get('/review/{id}', [DashboardReviewController::class, 'index'])->name('dashboard.review');
     Route::post('/review/{id}', [DashboardReviewController::class, 'store'])->name('dashboard.review');
 
@@ -135,3 +147,11 @@ Route::prefix('dashboard')->group(function () {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,13 +22,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -38,12 +30,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    //Neu tai khoan la Admin chuyen den trang ADMIN
+
     protected function redirectTo()
     {
         if(Auth::user()->role == 'admin'){
             return '/admin';
         }
+        if(Auth::user()->role == 'user'){
+            return '/admin';
+        }
         return '/dashboard';
     }
+
 }

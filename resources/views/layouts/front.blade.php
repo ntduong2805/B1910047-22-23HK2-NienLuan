@@ -4,14 +4,15 @@
 
 <!-- Mirrored from rn53themes.net/themes/demo/the-royal-hotel/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Feb 2018 03:56:17 GMT -->
 <head>
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'The Royal Hotel')</title>
     <!-- META TAGS -->
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- FAV ICON(BROWSER TAB ICON) -->
-    <link rel="shortcut icon" href="{{ asset("front/front/images/fav.ico") }}" type="image/x-icon">
+    
+    <link rel="shortcut icon" href="{{ asset("front/images/fav.ico") }}" type="image/x-icon">
     <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Poppins%7CQuicksand:500,700" rel="stylesheet">
     @section('styles')

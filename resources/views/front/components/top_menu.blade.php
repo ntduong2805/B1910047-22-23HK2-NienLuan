@@ -19,11 +19,16 @@
                         <a href="{{ route('admin') }}"><img src="{{ asset("front/images/icon/2.png") }}" alt=""> Admin Panel</a>
                     </li>
                 @endif
+                @if(Auth::user()->role == "user")
+                    <li>
+                        <a href="{{ route('roombooking.index') }}"><img src="{{ asset("front/images/icon/2.png") }}" alt=""> Admin Panel</a>
+                    </li>
+                @endif
                 <li>
                     <a href="{{ route('dashboard') }}"><img src="{{ asset("front/images/icon/15.png") }}" alt=""> User Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ url('/dashboard/room/booking') }}"><img src="{{ asset("front/images/icon/1.png") }}" alt=""> My
+                    <a href="{{ route('dashboard.room') }}"><img src="{{ asset("front/images/icon/1.png") }}" alt=""> My
                         Room Bookings</a>
                 </li>
                 <li>

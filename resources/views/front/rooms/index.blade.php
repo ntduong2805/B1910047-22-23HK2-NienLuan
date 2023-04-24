@@ -1,4 +1,5 @@
 @extends('layouts.front')
+@section('title', 'The Royal Hotel | Rooms')
 
 @section('content')
 

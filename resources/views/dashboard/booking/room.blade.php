@@ -1,4 +1,5 @@
 @extends('layouts.dashboard')
+@section('title', 'Dashboard | Booking')
 
 @section('content')
 
